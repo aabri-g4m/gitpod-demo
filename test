@@ -1,4 +1,4 @@
-proto < ./.rr.proto
+proto < .rr.proto
 @host=grpcb.in:9090
 ###
 
