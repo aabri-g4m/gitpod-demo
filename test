@@ -1,5 +1,5 @@
 proto < .rr.proto
-@host=grpcb.in:9090
+@host=:9090
 ###
 
 GRPC /g4m.demo.v2.DemoService.Greet
