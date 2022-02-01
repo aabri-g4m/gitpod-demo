@@ -1,0 +1,42 @@
+paths:
+  - ./src
+exclude_files:
+  - '#.*test.*#'
+layers:
+  - name: Domain
+    collectors:
+      - type: className
+        regex: G4M\\Domain.*
+  - name: Application
+    collectors:
+      - type: className
+        regex: G4M\\Application.*
+  - name: Spiral
+    collectors:
+      - type: className
+        regex: Spiral
+  - name: CycleORM
+    collectors:
+      - type: className
+        regex: Cycle\\ORM
+  - name: CycleAnnotation
+    collectors:
+      - type: className
+        regex: Cycle\\Annotated\\Annotation
+  - name: GrpcService
+    collectors:
+      - type: className
+        regex: G4M\\Service
+  - name: Monolog
+    collectors:
+      - type: className
+        regex: Monolog
+ruleset:
+  Application:
+    - Domain
+    - CycleORM
+    - GrpcService
+    - Spiral
+    - Monolog
+  Domain:
+    - CycleAnnotation # only because of ORM annotation that could be removed to separate file

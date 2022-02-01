@@ -1,0 +1,40 @@
+# grpc service configuration.
+grpc:
+  listen: tcp://0.0.0.0:9090
+  proto: ".rr.proto"
+  workers.command: "php app.php"
+#  tls.key:  "app.key"
+#  tls.cert: "app.crt"
+  MaxSendMsgSize: 50
+  MaxRecvMsgSize: 50
+  MaxConnectionIdle: 0s
+  MaxConnectionAge: 0s
+  MaxConnectionAgeGrace: 0s
+  MaxConcurrentStreams: 10
+  PingTime: 1s
+  Timeout: 200s
+
+metrics:
+  # prometheus client address (path /metrics added automatically)
+  address: localhost:2112
+
+# queue and jobs
+jobs:
+  workers:
+    command: "php app.php"
+    pool.numWorkers: 2
+
+# control the max memory usage
+limit:
+  services:
+    grpc.maxMemory: 100
+
+
+# reload can reset rr servers when files change
+reload:
+  interval: 1s
+  patterns: [ ".php" ]
+  services:
+    grpc:
+      dirs: [ "./src" ]
+      recursive: true

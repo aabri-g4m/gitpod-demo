@@ -1,0 +1,20 @@
+# This is a project level configuration file for genny and is used to override
+# the global configuration at ~/.genny/etc/genny.yaml. See teh global file for
+# more configuration options and details
+
+name: demo-v2
+
+domains:
+   - domain: demo
+     version: v2
+
+template:
+  type: php_server
+
+protoc:
+  compile:
+    auto: true
+    targets:
+      - php_server
+      - openapi
+      - doc

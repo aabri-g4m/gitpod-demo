@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    bootstrap="vendor/autoload.php" colors="true"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+>
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="All">
+      <directory>tests/</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <server name="APP_NAME" value="test"/>
+    <server name="SPIRAL_ENV" value="testing"/>
+    <server name="ENCRYPTER_KEY" value="def00000b0fa4b3dc1aa023db750811f747a6a0bc0d2f0527cc0f6d29475efdd32f47eafa506f53d021adc6986954ca12bf27b3c446b66fe761d95c40e2323fdbb555590"/>
+    <server name="DB_CONNECTION" value="sqlite"/>
+    <server name="DB_DATABASE" value=":memory:"/>
+  </php>
+</phpunit>

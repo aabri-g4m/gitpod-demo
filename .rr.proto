@@ -1,0 +1,2 @@
+syntax = "proto3";
+import "pb/demo/v2/demo.proto";

@@ -1,0 +1,15 @@
+.idea
+vendor
+runtime
+rr
+.env
+spiral*
+pb
+build
+/.deptrac.cache
+/.phpunit.result.cache
+/.php-cs-fixer.cache
+
+
+# Ignore DevSpace cache and log folder
+.devspace/
