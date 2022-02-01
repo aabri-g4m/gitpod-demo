@@ -6,7 +6,7 @@
  */
 syntax = "proto3";
 
-import "google/api/annotations.proto";
+// import "google/api/annotations.proto";
 
 package g4m.demo.v2;
 
@@ -20,18 +20,18 @@ option php_metadata_namespace = "G4M\\Meta\\Demo\\V2";
 service DemoService {
   /// Used to generate a simple "Hello World" style greeting
   rpc Greet (GreetRequest) returns (Greeting) {
-    option (google.api.http) = {
-      post: "/v2/greet"
-      body: "*"
-    };
+    // option (google.api.http) = {
+    //   post: "/v2/greet"
+    //   body: "*"
+    // };
   };
 
   /// Start a server side timer and update the caller every second
   rpc StartTimer (StartTimerRequest) returns (stream Timer) {
-    option (google.api.http) = {
-      post: "/v2/timer"
-      body: "*"
-    };
+    // option (google.api.http) = {
+    //   post: "/v2/timer"
+    //   body: "*"
+    // };
   }
 }
 

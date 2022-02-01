@@ -1,8 +1,8 @@
 proto < .rr.proto
-@host=:9090
+# @host=:9090
 ###
 
-GRPC /g4m.demo.v2.DemoService.Greet
+GRPC localhost:9090/g4m.demo.v2.DemoService/Greet
 {
   "name": "Amine Abri"
 }
