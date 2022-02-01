@@ -4,7 +4,6 @@ runtime
 rr
 .env
 spiral*
-pb
 build
 /.deptrac.cache
 /.phpunit.result.cache

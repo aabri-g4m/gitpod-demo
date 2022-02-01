@@ -1,0 +1,37 @@
+syntax = "proto3";
+package g4m.demo.v1;
+option go_package = "services/demo/v1";
+import "google/api/annotations.proto";
+option php_namespace = "G4M\\Service\\Demo\\V1";
+option php_metadata_namespace = "G4M\\Meta\\Demo\\V1";
+
+service DemoService {
+  rpc Greeter (GreeterRequest) returns (GreeterResponse) {
+    option (google.api.http) = {
+      post: "/v1/greet"
+      body: "*"
+    };
+  };
+  rpc Timer (TimerRequest) returns (stream TimerResponse) {
+    option (google.api.http) = {
+      post: "/v1/timer"
+      body: "*"
+    };
+  }
+}
+
+message GreeterRequest {
+  string name = 1;
+}
+
+message GreeterResponse {
+  string greeting = 1;
+}
+
+message TimerRequest {
+  int32 seed = 1;
+}
+
+message TimerResponse {
+  int32 elapsed = 1;
+}
