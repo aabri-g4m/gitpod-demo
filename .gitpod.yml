@@ -1,0 +1,17 @@
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  # Grpc server
+  - port: 9090
+    onOpen: ignore
+  # Metrics
+  - port: 2112
+    onOpen: open-preview
+
+tasks:
+  - init: >
+      composer install && ./vendor/bin/spiral get
+    command: >
+      echo "RoadRunner binary file exist"
+      ./spiral serve -v -d
