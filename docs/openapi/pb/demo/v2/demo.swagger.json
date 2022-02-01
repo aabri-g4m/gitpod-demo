@@ -1,0 +1,162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "pb/demo/v2/demo.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DemoService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v2/greet": {
+      "post": {
+        "summary": "/ Used to generate a simple \"Hello World\" style greeting",
+        "operationId": "DemoService_Greet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2Greeting"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v2GreetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DemoService"
+        ]
+      }
+    },
+    "/v2/timer": {
+      "post": {
+        "summary": "/ Start a server side timer and update the caller every second",
+        "operationId": "DemoService_StartTimer",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v2Timer"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v2Timer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v2StartTimerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DemoService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v2GreetRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "*\nThe request object for the Greet method."
+    },
+    "v2Greeting": {
+      "type": "object",
+      "properties": {
+        "greeting": {
+          "type": "string"
+        }
+      },
+      "title": "*\nThe result of the Greet method"
+    },
+    "v2StartTimerRequest": {
+      "type": "object",
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "*\nThe request object for the Timer Method"
+    },
+    "v2Timer": {
+      "type": "object",
+      "properties": {
+        "elapsed": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "*\nThe update message that will be returned to the caller via the stream"
+    }
+  }
+}

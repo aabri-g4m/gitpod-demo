@@ -1,0 +1,65 @@
+/**
+ * Demo.
+ *
+ * This file is really just an example. The data model is completely
+ * fictional.
+ */
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+package g4m.demo.v2;
+
+option go_package = "services/demo/v2";
+option php_namespace = "G4M\\Service\\Demo\\V2";
+option php_metadata_namespace = "G4M\\Meta\\Demo\\V2";
+
+/**
+ * Our demo service for testing and demonstration purposes
+ */
+service DemoService {
+  /// Used to generate a simple "Hello World" style greeting
+  rpc Greet (GreetRequest) returns (Greeting) {
+    option (google.api.http) = {
+      post: "/v2/greet"
+      body: "*"
+    };
+  };
+
+  /// Start a server side timer and update the caller every second
+  rpc StartTimer (StartTimerRequest) returns (stream Timer) {
+    option (google.api.http) = {
+      post: "/v2/timer"
+      body: "*"
+    };
+  }
+}
+
+/**
+ * The request object for the Greet method.
+ */
+message GreetRequest {
+  string name = 1; // the name of the person to greet
+}
+
+/**
+ * The result of the Greet method
+ */
+message Greeting {
+
+  string greeting = 1; // the full greeting
+}
+
+/**
+ * The request object for the Timer Method
+ */
+message StartTimerRequest {
+  int32 seed = 1; // the number to start the timer at
+}
+
+/**
+ * The update message that will be returned to the caller via the stream
+ */
+message Timer {
+  int32 elapsed = 1; // the amount of seconds that have elapsed since the timer was started
+}
