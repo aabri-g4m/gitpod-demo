@@ -13,5 +13,4 @@ tasks:
   - init: >
       composer install && ./vendor/bin/spiral get
     command: >
-      echo "RoadRunner binary file exist"
       ./spiral serve -v -d
