@@ -9,8 +9,8 @@ ports:
   - port: 2112
     onOpen: open-preview
 
-#tasks:
-#  - init: >
+tasks:
+ - init: >
 #      composer install --no-interaction && ./vendor/bin/spiral get
-#    command: >
-#      ./spiral serve -v -d
+   command: >
+     ./spiral serve -v -d
